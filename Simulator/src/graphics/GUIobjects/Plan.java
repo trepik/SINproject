@@ -80,7 +80,20 @@ public class Plan extends JPanel {
 
             edges = new LinkedList<>(schema.getEdgesLinkedTo(r));
             edges.retainAll(unusedEdges);
-            if (edges.isEmpty()){
+            if (edges.isEmpty()) {
+                List<Entity> entList = r.getEntityList();
+                for (Entity ent : entList) {
+                    System.out.println("here");
+                    if (ent instanceof DockingStation) {
+                        System.out.println(ent.getId());
+                        addStation(ent.getId(), ent.getLocation().getId());
+                    }
+
+                    if (ent instanceof simulator.entities.impl.Roomba) {
+                        System.out.println(ent.getId());
+                        placeRoomba(ent.getId(), ent.getLocation().getId());
+                    }
+                }
                 roomList.remove(roomList.indexOf(r));
             }
             if (rooms.containsKey(r.getId())) { // room is already in GUI
@@ -97,18 +110,6 @@ public class Plan extends JPanel {
 //                        System.out.println("Right: " + left.getId() + " " + right.getId());
                         addRoom(right.getId(), left.getId(), left.getSurfaceArea());
                         unusedEdges.remove(unusedEdges.indexOf(ed));
-                    }
-                    List<Entity> entList = r.getEntityList();
-                    for (Entity ent : entList) {
-                        if (ent instanceof DockingStation) {
-//                            System.out.println(ent.getId());
-                            addStation(ent.getId(), ent.getLocation().getId());
-                        }
-
-                        if (ent instanceof simulator.entities.impl.Roomba) {
-//                            System.out.println(ent.getId());
-                            placeRoomba(ent.getId(), ent.getLocation().getId());
-                        }
                     }
                 }
             }

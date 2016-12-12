@@ -91,7 +91,7 @@ public class Simulator {
         // kitchen
         kitchen = new CommonRoom("Kitchen", 5, 10);
         b.connectNewRoom(entrance, kitchen);
-        DockingStation d = new DockingStation("Venice");
+        DockingStation d = new DockingStation(1);
         Roomba r = new Roomba("Ballahoo");
         kitchen.addEntity(d);
         kitchen.addEntity(r);
@@ -100,7 +100,7 @@ public class Simulator {
         // hall
         hall = new CommonRoom("Hallway", 5, 5);
         b.connectNewRoom(wroom, hall);
-        d = new DockingStation("Dubrovnik");
+        d = new DockingStation(2);
         r = new Roomba("Tilbury");
         hall.addEntity(d);
         hall.addEntity(r);
